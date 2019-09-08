@@ -1,0 +1,57 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Serial Number</th>
+      <th>Manufacturer Name</th>
+      <th> Model Name</th>
+      <th> Count</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody *ngFor='let i of inventory.data; let k = index;'>
+    <tr>
+      <td>{{ k+1 }}</td>
+      <td>{{ i.name }}</td>
+      <td>{{ i.mname }}</td>
+      <td>{{ i.count }}</td>
+      <td>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inventory-model"  (click)="loadInventoryToView(i.id)">
+              View
+            </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- The Modal -->
+<div class="modal" id="inventory-model">
+    <div class="modal-dialog">
+      <div class="modal-content" *ngIf="singleInv">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Car Model Details</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+         <h6>Model Name: {{ singleInv.mname }}</h6>
+         <h6>Color: {{ singleInv.color }}</h6>
+         <h6>Manufacturing Year: {{ singleInv.year }}</h6>
+         <h6>Registration Number: {{ singleInv.registration_number }}</h6>
+         <h6>Count: {{ singleInv.count }}</h6>
+         <h6>Note: {{ singleInv.note }}</h6>
+         <img src="{{ img1 }}"  alt="" class="img-car">
+         <img [src]= "img2" alt="" class="img-car">
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteInventoryModel(singleInv.id)">Sold</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

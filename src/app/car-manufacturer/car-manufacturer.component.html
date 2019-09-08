@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-sm-5">
+    <form [formGroup]="manufacturerForm" id="manufacturerForm" (ngSubmit)="formSubmit()">
+      <div class="form-group">
+        <label for="name">Manufacturer Name</label>
+        <input type="text" formControlName="name" name="name" class="form-control">
+        <div class="error" *ngIf="manufacturerForm.get('name').touched && !manufacturerForm.get('name').value">
+          Manufacturer Name is Required!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" class="btn btn-success btn-sm" value="Submit" [disabled]="!manufacturerForm.valid">
+     
+      </div>
+    </form>
+  </div>
+
+  <div class="col-sm-7">
+    <table class="table table-bordered" *ngIf="allManufacturers">
+      <tr>
+        <th>ID</th>
+        <th>Manufacturer Name</th>
+        <!-- <th>Edit</th> -->
+        <th>Delete</th>
+      </tr>
+     <tbody *ngFor='let m of allManufacturers.data'>
+        <td>{{ m.id }}</td>
+        <td>{{ m.name }}</td>
+        <!-- <td><button class="btn-primary btn-sm" (click)="loadManufacturerToEdit(m.id)">Edit</button></td> -->
+        <td><button class="btn-danger btn-sm" (click)="deleteEmployee(m.id)">Delete</button></td>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
