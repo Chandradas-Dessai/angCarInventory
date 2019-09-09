@@ -8,7 +8,9 @@ import { retry, catchError, map, tap } from 'rxjs/operators';
 })
 export class InventoryService {
   //url: string = 'http://127.0.0.1:8000/api/v1/inventory';
-  url: string = 'http://minicarinventory.epizy.com/public/api/v1/inventory';
+  //url: string = 'http://minicarinventory.epizy.com/public/api/v1/inventory';
+  url: string = 'https://cinventory.000webhostapp.com/api/v1/inventory';
+
   constructor(private http: HttpClient) { }
 
   getInventory(): Observable<any>{

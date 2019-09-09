@@ -12,8 +12,8 @@ export class CarModelService {
 
   
   //url: string = 'http://127.0.0.1:8000/api/v1/car-model';
-  //url: string = 'https://cinventory.000webhostapp.com/api/v1/car-model';
-  url: string = 'http://minicarinventory.epizy.com/public/api/v1/car-model';
+  url: string = 'https://cinventory.000webhostapp.com/api/v1/car-model';
+  //url: string = 'http://minicarinventory.epizy.com/public/api/v1/car-model';
 
   constructor(private http: HttpClient) { }
 
