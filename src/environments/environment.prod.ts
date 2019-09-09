@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://cinventory.000webhostapp.com/'
+  baseUrl: 'http://minicarinventory.epizy.com/'
 };
