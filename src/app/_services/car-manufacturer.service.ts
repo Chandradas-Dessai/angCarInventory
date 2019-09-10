@@ -26,7 +26,7 @@ export class CarManufacturerService {
 
   createManufacturer(manufacturer: any): Observable<any>{
     const httpOptions = { headers: new HttpHeaders({
-      'Data-Type':'application/json'
+      'Content-Type':  'application/json'
     }) };
     return this.http.post<any>(this.url, manufacturer, httpOptions);
   }
@@ -39,10 +39,8 @@ export class CarManufacturerService {
   }
 
   deleteManufacturerById(mId: string): Observable<any>{
-    const httpOptions = {headers: new HttpHeaders({ 
-      'Data-Type':'application/json'
-    }) };
-    return this.http.delete<any>(this.url+'/'+mId, httpOptions);
+
+    return this.http.delete<any>(this.url+'/'+mId);
   }
 
 }
