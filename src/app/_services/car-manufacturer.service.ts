@@ -25,10 +25,10 @@ export class CarManufacturerService {
   }
 
   createManufacturer(manufacturer: any): Observable<any>{
-    const httpOptions = { headers: new HttpHeaders({
-      'Data-Type':'application/json'
-    }) };
-    return this.http.post<any>(this.url, manufacturer, httpOptions);
+//     const httpOptions = { headers: new HttpHeaders({
+//       'Data-Type':'application/json'
+//     }) };
+    return this.http.post<any>(this.url, manufacturer);
   }
 
   updateManufacturer(manufacturer: Manufacturer): Observable<Manufacturer>{
