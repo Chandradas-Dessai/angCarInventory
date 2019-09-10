@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpHeaderResponse,HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, tap } from 'rxjs/operators'
+import { retry, catchError, map, tap } from 'rxjs/operators';
 import { Manufacturer } from '../_models/manufacturer.model';
 
 @Injectable({
@@ -25,22 +25,39 @@ export class CarManufacturerService {
   }
 
   createManufacturer(manufacturer: any): Observable<any>{
-    const httpOptions = { headers: new HttpHeaders({
-      'Content-Type':  'application/json'
-    }) };
-    return this.http.post<any>(this.url, manufacturer, httpOptions);
+
+    return this.http.post<any>(this.url, manufacturer).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
   }
 
-  updateManufacturer(manufacturer: Manufacturer): Observable<Manufacturer>{
-    const httpOptions = { headers: new HttpHeaders({
-      'Data-Type':'application/json'
-    }) };
-    return this.http.put<Manufacturer>(this.url+'/'+manufacturer.id, manufacturer, httpOptions);
-  }
+  // updateManufacturer(manufacturer: Manufacturer): Observable<Manufacturer>{
+  //   const httpOptions = { headers: new HttpHeaders({
+  //     'Data-Type':'application/json'
+  //   }) };
+  //   return this.http.put<Manufacturer>(this.url+'/'+manufacturer.id, manufacturer, httpOptions);
+  // }
 
   deleteManufacturerById(mId: string): Observable<any>{
 
-    return this.http.delete<any>(this.url+'/'+mId);
+    return this.http.delete<any>(this.url+'/'+mId).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
   }
 
 }

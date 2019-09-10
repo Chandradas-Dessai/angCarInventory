@@ -54,12 +54,10 @@ export class CarManufacturerComponent implements OnInit {
   formSubmit(){
     const manufacturer = this.manufacturerForm.value;
 
-    if(this.manufacturerToUpdate == null){
+   // if(this.manufacturerToUpdate == null){
       this. createManufacturer(manufacturer);
-    }
-    else{
-      this.updateManufacturer(manufacturer);
-    }
+    //}
+
   }
 
   createManufacturer(manufacturer: Manufacturer){
@@ -74,17 +72,17 @@ export class CarManufacturerComponent implements OnInit {
     });
   }
 
-  updateManufacturer(manufacturer:Manufacturer){
-    manufacturer.id = this.manufacturerToUpdate;
+  // updateManufacturer(manufacturer:Manufacturer){
+  //   manufacturer.id = this.manufacturerToUpdate;
 
-    this.carManufacturerService.updateManufacturer(manufacturer).subscribe(
-      () => {
-      this.message = 'Manufacturer Updated Successfully!';
-      this.listAllManufacturers();
-      this.manufacturerToUpdate = null;
-      this.manufacturerForm.reset();
-    });
-  }
+  //   this.carManufacturerService.updateManufacturer(manufacturer).subscribe(
+  //     () => {
+  //     this.message = 'Manufacturer Updated Successfully!';
+  //     this.listAllManufacturers();
+  //     this.manufacturerToUpdate = null;
+  //     this.manufacturerForm.reset();
+  //   });
+  // }
 
 deleteEmployee(mId: string){
   if(confirm(`Are you sure you want to delete the Manufacturer with id ${mId}`)){
