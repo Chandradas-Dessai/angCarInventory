@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { Manufacturer } from '../_models/manufacturer.model';
 import { CarManufacturerService } from '../_services/car-manufacturer.service';
-import { timeout } from 'q';
+//import { timeout } from 'q';
 
 
 
@@ -51,17 +51,15 @@ export class CarManufacturerComponent implements OnInit {
     });
   }
 
-  formSubmit(){
-    const manufacturer = this.manufacturerForm.value;
+  formSubmit(manufacturer: Manufacturer){
+    //const manufacturer1= this.manufacturerForm.value;
+
+     const input = new FormData();
+
+     input.append('name', manufacturer.name);
 
    // if(this.manufacturerToUpdate == null){
-      this. createManufacturer(manufacturer);
-    //}
-
-  }
-
-  createManufacturer(manufacturer: Manufacturer){
-    this.carManufacturerService.createManufacturer(manufacturer).subscribe(response => {
+    this.carManufacturerService.createManufacturer(input).subscribe(response => {
       if(response.status=="success"){
         this.toastr.success(response.message, 'Success', {timeOut: 5000});
         this.listAllManufacturers();
@@ -70,7 +68,21 @@ export class CarManufacturerComponent implements OnInit {
         this.toastr.error(response.message, 'Error', {timeOut: 5000})
       }
     });
+    //}
+
   }
+
+  // createManufacturer(manufacturer: Manufacturer){
+  //   this.carManufacturerService.createManufacturer(manufacturer).subscribe(response => {
+  //     if(response.status=="success"){
+  //       this.toastr.success(response.message, 'Success', {timeOut: 5000});
+  //       this.listAllManufacturers();
+  //       this.manufacturerForm.reset();
+  //     }else{
+  //       this.toastr.error(response.message, 'Error', {timeOut: 5000})
+  //     }
+  //   });
+  // }
 
   // updateManufacturer(manufacturer:Manufacturer){
   //   manufacturer.id = this.manufacturerToUpdate;
