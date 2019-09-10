@@ -24,9 +24,9 @@ export class CarManufacturerService {
     return this.http.get<Manufacturer>(this.url+'/'+mId+'/edit');
   }
 
-  createManufacturer(manufacturer: any): Observable<any>{
+  createManufacturer(input: any): Observable<any>{
 
-    return this.http.post<any>(this.url, manufacturer).pipe(
+    return this.http.post<any>(this.url, input).pipe(
       retry(1),
       catchError(this.handleError)
     );
