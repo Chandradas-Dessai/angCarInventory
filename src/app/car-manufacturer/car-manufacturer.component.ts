@@ -97,7 +97,6 @@ export class CarManufacturerComponent implements OnInit {
   // }
 
 deleteEmployee(mId: string){
-  console.log("ID"+mId);
   if(confirm(`Are you sure you want to delete the Manufacturer with id ${mId}`)){
   this.carManufacturerService.deleteManufacturerById(mId).subscribe(response => {
     if(response.status=="success"){
