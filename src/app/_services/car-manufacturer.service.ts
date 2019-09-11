@@ -21,27 +21,14 @@ export class CarManufacturerService {
   }
 
   createManufacturer(input: any): Observable<any>{
-
     return this.http.post<any>(this.url, input).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
-  // updateManufacturer(manufacturer: Manufacturer): Observable<Manufacturer>{
-  //   const httpOptions = { headers: new HttpHeaders({
-  //     'Data-Type':'application/json'
-  //   }) };
-  //   return this.http.put<Manufacturer>(this.url+'/'+manufacturer.id, manufacturer, httpOptions);
-  // }
-
   deleteManufacturerById(mId: string): Observable<any>{
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
-    return this.http.delete<any>(this.url+'/'+mId, httpOptions).pipe(
+    return this.http.delete<any>(this.url+'/'+mId).pipe(
       retry(1),
       catchError(this.handleError)
     );

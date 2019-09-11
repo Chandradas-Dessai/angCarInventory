@@ -22,9 +22,6 @@ export class InventoryService {
   }
 
   deleteInventoryById(InvId: string): Observable<any>{
-    const httpOptions = {headers: new HttpHeaders({ 
-      'Data-Type':'application/json'
-    }) };
-    return this.http.delete<any>(this.url+'/'+InvId, httpOptions);
+    return this.http.delete<any>(this.url+'/'+InvId);
   }
 }
