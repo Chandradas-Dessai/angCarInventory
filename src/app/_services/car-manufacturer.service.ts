@@ -20,10 +20,6 @@ export class CarManufacturerService {
     return this.http.get<Manufacturer>(this.url);
   }
 
-  getManufacturerById(mId: string): Observable<Manufacturer>{
-    return this.http.get<Manufacturer>(this.url+'/'+mId+'/edit');
-  }
-
   createManufacturer(input: any): Observable<any>{
 
     return this.http.post<any>(this.url, input).pipe(
@@ -39,9 +35,13 @@ export class CarManufacturerService {
   //   return this.http.put<Manufacturer>(this.url+'/'+manufacturer.id, manufacturer, httpOptions);
   // }
 
-  deleteManufacturerById(mId: string): Observable<Manufacturer>{
-
-    return this.http.delete<Manufacturer>(this.url+'/'+mId).pipe(
+  deleteManufacturerById(mId: string): Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.delete<any>(this.url+'/'+mId, httpOptions).pipe(
       retry(1),
       catchError(this.handleError)
     );

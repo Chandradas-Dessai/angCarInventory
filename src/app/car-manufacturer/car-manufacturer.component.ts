@@ -42,14 +42,6 @@ export class CarManufacturerComponent implements OnInit {
         this.allManufacturers = data;
     });
   }
- 
-  loadManufacturerToEdit(mId: string){
-    
-    this.carManufacturerService.getManufacturerById(mId).subscribe(man =>{
-      //this.manufacturerToUpdate = man.id;
-      //this.manufacturerForm.controls['name'].setValue(man.name);
-    });
-  }
 
   formSubmit(manufacturer: Manufacturer){
     //const manufacturer1= this.manufacturerForm.value;
@@ -99,13 +91,13 @@ export class CarManufacturerComponent implements OnInit {
 deleteEmployee(mId: string){
   if(confirm(`Are you sure you want to delete the Manufacturer with id ${mId}`)){
   this.carManufacturerService.deleteManufacturerById(mId).subscribe(response => {
-    // if(response.status=="success"){
-    //   this.toastr.success(response.message, 'Success', {timeOut: 5000});
+    if(response.status=="success"){
+      this.toastr.success(response.message, 'Success', {timeOut: 5000});
       this.listAllManufacturers();
       this.manufacturerForm.reset();
-   // }else{
-      //this.toastr.error('Unable to delete Manufacturer!', 'Error', {timeOut: 5000})
-   // }
+    }else{
+      this.toastr.error('Unable to delete Manufacturer!', 'Error', {timeOut: 5000})
+    }
     });
 }
 }
