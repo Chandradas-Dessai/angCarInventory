@@ -46,7 +46,7 @@ export class InventoryComponent implements OnInit {
     });
   }
 
-  deleteInventoryModel(InvId: string){
+  deleteInventoryModel(InvId: any){
     if(confirm(`Are you sure you want to delete the Inventory Model with id ${InvId}`)){
     this.InventoryService.deleteInventoryById(InvId).subscribe(response => {
       if(response.status=="success"){

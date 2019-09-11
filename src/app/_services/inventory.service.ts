@@ -21,7 +21,7 @@ export class InventoryService {
     return this.http.get<any>(this.url+'/'+mId);
   }
 
-  deleteInventoryById(InvId: string): Observable<any>{
+  deleteInventoryById(InvId: any): Observable<any>{
     return this.http.delete<any>(this.url+'/'+InvId);
   }
 }
