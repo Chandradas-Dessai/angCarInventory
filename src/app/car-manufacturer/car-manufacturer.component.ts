@@ -89,9 +89,8 @@ export class CarManufacturerComponent implements OnInit {
 
   deleteManufacturer(mId: any){
     const id  = `${mId}`;
-    console.log(id);
-  if(confirm(`Are you sure you want to delete the Manufacturer with id ${mId}`)){
-  this.carManufacturerService.deleteManufacturerById(mId).subscribe(response => {
+  //if(confirm(`Are you sure you want to delete the Manufacturer with id ${mId}`)){
+  this.carManufacturerService.deleteManufacturerById(id).subscribe(response => {
     if(response.status=="success"){
       this.toastr.success(response.message, 'Success', {timeOut: 5000});
       this.listAllManufacturers();
@@ -100,7 +99,7 @@ export class CarManufacturerComponent implements OnInit {
       this.toastr.error('Unable to delete Manufacturer!', 'Error', {timeOut: 5000})
     }
     });
-}
+//}
 }
 
 }
