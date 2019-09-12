@@ -62,7 +62,7 @@ export class CarManufacturerComponent implements OnInit {
   }
 
  
-  deleteManufacturer(mId: any){
+  public deleteManufacturer(mId: any){
     const id  = `${mId}`;
   if(confirm(`Are you sure you want to delete the Manufacturer with id ${mId}`)){
   this.carManufacturerService.deleteManufacturerById(id).subscribe(response => {

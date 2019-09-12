@@ -22,6 +22,29 @@ export class InventoryService {
   }
 
   deleteInventoryById(InvId: any): Observable<any>{
-    return this.http.delete<any>(this.url+'/'+InvId);
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                     'Access-Control-Allow-Origin': '*',
+                     'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS, PUT, HEAD',
+                     'Access-Control-Allow-Headers': 'Content-Type' })};
+
+    return this.http.delete<any>(this.url+'/'+InvId, httpOptions).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
   }
+
+  handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
+
 }
