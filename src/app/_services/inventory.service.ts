@@ -22,13 +22,7 @@ export class InventoryService {
   }
 
   deleteInventoryById(InvId: any): Observable<any>{
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                     'Access-Control-Allow-Origin': '*',
-                     'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS, PUT, HEAD',
-                     'Access-Control-Allow-Headers': 'Content-Type' })};
-
-    return this.http.delete<any>(this.url+'/'+InvId, httpOptions).pipe(
+    return this.http.delete<any>(this.url+'/'+InvId).pipe(
       retry(1),
       catchError(this.handleError)
     );
