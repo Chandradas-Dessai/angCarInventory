@@ -27,8 +27,8 @@ export class CarManufacturerService {
     );
   }
 
-  deleteManufacturerById(id: any): Observable<any>{
-    return this.http.delete<any>(this.url+'/'+id).pipe(
+  deleteManufacturerById(id: any){
+    return this.http.delete(this.url + '/' + id).pipe(
       retry(1),
       catchError(this.handleError)
     );
