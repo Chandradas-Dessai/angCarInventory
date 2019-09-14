@@ -15,7 +15,7 @@ export class InventoryComponent implements OnInit {
   singleInv: any;
    //publicURL: string = 'http://127.0.0.1:8000/';
   //publicURL: string = 'http://minicarinventory.epizy.com/';
-  publicURL: string = 'http://cinventory.000webhostapp.com/';
+  publicURL: string = 'https://cinventory.000webhostapp.com/';
 
   img1: any;
   img2: any;
