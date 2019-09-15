@@ -5,7 +5,6 @@ import { map, tap } from 'rxjs/operators'
 import { ToastrService } from 'ngx-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
-
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
@@ -15,6 +14,7 @@ export class InventoryComponent implements OnInit {
   
   inventory: any;
   singleInv: any;
+  selectedModel
    //publicURL: string = 'http://127.0.0.1:8000/';
   publicURL: string = 'https://laravelbackend.herokuapp.com/';
   //publicURL: string = 'https://cinventory.000webhostapp.com/';
@@ -41,15 +41,23 @@ export class InventoryComponent implements OnInit {
     });
   }
 
-  loadInventoryToView(mId: string){
-    this.spinnerService.show();
-    this.InventoryService.getInventoryDetailsById(mId).subscribe(Inv =>{
-      this.singleInv = Inv;
+  // loadInventoryToView(mId: string){
+  //   this.spinnerService.show();
+  //   this.InventoryService.getInventoryDetailsById(mId).subscribe(Inv =>{
+  //     this.singleInv = Inv;
 
+  //     this.img1 =  this.publicURL+this.singleInv.image_url_1;
+  //     this.img2 =  this.publicURL+this.singleInv.image_url_2;
+  //     this.spinnerService.hide();
+  //   });
+  // }
+
+  loadInventoryToView(mId: string, inventory:any){
+    this.spinnerService.show();
+      this.singleInv = inventory;
       this.img1 =  this.publicURL+this.singleInv.image_url_1;
       this.img2 =  this.publicURL+this.singleInv.image_url_2;
       this.spinnerService.hide();
-    });
   }
 
   deleteInventoryModel(InvId: any){

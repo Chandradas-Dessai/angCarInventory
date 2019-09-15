@@ -46,6 +46,13 @@ export class CarManufacturerComponent implements OnInit {
   
   }
 
+  // loadManufacturerToEdit(id: string){  
+  //   this.carManufacturerService.getManufacturerById(id).subscribe(man =>{
+  //     //this.employeeIdToUpdate = emp.id;
+  //     this.manufacturerForm.controls['name'].setValue(man.name);
+  //   });
+  // }
+
   formSubmit(manufacturer: Manufacturer){
     //const manufacturer1= this.manufacturerForm.value;
     this.spinnerService.show();
@@ -74,8 +81,7 @@ export class CarManufacturerComponent implements OnInit {
     this.spinnerService.show();
   this.carManufacturerService.deleteManufacturerById(+id).subscribe(response => {
      if(response.status=="success"){
-       this.toastr.success(response.message, 'Success', {timeOut: 5000});
-    //this.toastr.success('Manufacturer added', 'Success', {timeOut: 5000});
+      this.toastr.success(response.message, 'Success', {timeOut: 5000});
       this.listAllManufacturers();
       this.manufacturerForm.reset();
       this.spinnerService.hide();

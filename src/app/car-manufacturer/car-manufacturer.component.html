@@ -3,7 +3,7 @@
     <form [formGroup]="manufacturerForm" id="manufacturerForm" (ngSubmit)="formSubmit(manufacturerForm.value)">
       <div class="form-group">
         <label for="name">Manufacturer Name</label>
-        <input type="text" formControlName="name" name="name" class="form-control">
+        <input type="text" formControlName="name" id="name" name="name" class="form-control">
         <div class="error" *ngIf="manufacturerForm.get('name').touched && !manufacturerForm.get('name').value">
           Manufacturer Name is Required!
         </div>

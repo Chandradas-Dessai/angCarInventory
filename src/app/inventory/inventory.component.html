@@ -1,4 +1,4 @@
-<table class="table table-bordered" *ngIf="inventory.data">
+<table class="table table-bordered" *ngIf="inventory?.data">
   <thead class="thead-dark">
     <tr>
       <th>Serial Number</th>
@@ -15,7 +15,7 @@
       <td>{{ i.mname }}</td>
       <td>{{ i.count }}</td>
       <td>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inventory-model"  (click)="loadInventoryToView(i.id)">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inventory-model"  (click)="loadInventoryToView(i.id, i)">
               View
             </button>
       </td>
@@ -38,8 +38,9 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-md-5">
-                <img src="{{ img1 }}"  alt="" class="img-car">
-                <img [src]= "img2" alt="" class="img-car">
+                <img src="{{ publicURL }}{{ singleInv.image_url_1 }}"  alt="" class="img-car">
+                <img src="{{ publicURL }}{{ singleInv.image_url_2 }}"  alt="" class="img-car">
+                <!-- <img [src]= "img2" alt="" class="img-car"> -->
             </div>
             <div class="col-md-7">
                 <h6>Model Name: {{ singleInv.mname }}</h6>

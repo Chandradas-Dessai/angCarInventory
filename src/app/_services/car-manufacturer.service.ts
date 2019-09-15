@@ -21,6 +21,10 @@ export class CarManufacturerService {
     return this.http.get<Manufacturer>(this.url);
   }
 
+  // getManufacturerById(id: string): Observable<Manufacturer>{
+  //   return this.http.get<Manufacturer>(this.url+'/'+id);
+  // }
+
   createManufacturer(input: any): Observable<any>{
     return this.http.post<any>(this.url, input).pipe(
       retry(1),
