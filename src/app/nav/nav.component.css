@@ -1,0 +1,7 @@
+.navbar {
+    background: #262626;
+    margin-bottom: 50px;
+}
+.navbar-collapse {
+    flex-grow: inherit;
+}

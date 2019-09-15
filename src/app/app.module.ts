@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 import { AppComponent } from './app.component';
 import { CarManufacturerComponent } from './car-manufacturer/car-manufacturer.component';
@@ -38,7 +39,7 @@ import { InventoryComponent } from './inventory/inventory.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [
     CarManufacturerService,

@@ -3,6 +3,8 @@ import { FormsModule, FormBuilder, Validators, FormArray, FormGroup} from '@angu
 import { Observable, from } from 'rxjs';
 import { map, tap, subscribeOn } from 'rxjs/operators'
 import { ToastrService } from 'ngx-toastr';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 
 import { Manufacturer } from '../_models/manufacturer.model';
 import { CarManufacturerService } from '../_services/car-manufacturer.service';
@@ -36,6 +38,7 @@ export class CarModelComponent implements OnInit {
     private carManufacturerService: CarManufacturerService,
     private carModelService: CarModelService,
     private formBuilder: FormBuilder,
+    private spinnerService: Ng4LoadingSpinnerService
   ) { }
 
   ngOnInit() {
@@ -51,8 +54,10 @@ export class CarModelComponent implements OnInit {
       'image_url_2': [null,Validators.required]
     });
 
+    this.spinnerService.show();
     this.carManufacturerService.getAllManufacturers().subscribe(data => {
              this.allManufacturers = data;
+             this.spinnerService.hide();
         });
   }
 
@@ -82,7 +87,7 @@ export class CarModelComponent implements OnInit {
 
   formSubmit(carModel: Model){    
     //const carModel = this.carModelForm.value;
-
+    this.spinnerService.show();
     const input = new FormData();
 
     input.append('mname', carModel.mname);
@@ -100,8 +105,12 @@ export class CarModelComponent implements OnInit {
       if(response.status=="success"){
         this.toastr.success(response.message, 'Success', {timeOut: 5000});
         this.carModelForm.reset();
+        this.spinnerService.hide();
+
       }else{
         this.toastr.error(response.errors, 'Error', {timeOut: 5000})
+        this.spinnerService.hide();
+
       }
     });
   }

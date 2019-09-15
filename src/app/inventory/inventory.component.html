@@ -1,5 +1,5 @@
-<table class="table table-bordered">
-  <thead>
+<table class="table table-bordered" *ngIf="inventory.data">
+  <thead class="thead-dark">
     <tr>
       <th>Serial Number</th>
       <th>Manufacturer Name</th>
@@ -36,14 +36,20 @@
   
         <!-- Modal body -->
         <div class="modal-body">
-         <h6>Model Name: {{ singleInv.mname }}</h6>
-         <h6>Color: {{ singleInv.color }}</h6>
-         <h6>Manufacturing Year: {{ singleInv.year }}</h6>
-         <h6>Registration Number: {{ singleInv.registration_number }}</h6>
-         <h6>Count: {{ singleInv.count }}</h6>
-         <h6>Note: {{ singleInv.note }}</h6>
-         <img src="{{ img1 }}"  alt="" class="img-car">
-         <img [src]= "img2" alt="" class="img-car">
+          <div class="row">
+            <div class="col-md-5">
+                <img src="{{ img1 }}"  alt="" class="img-car">
+                <img [src]= "img2" alt="" class="img-car">
+            </div>
+            <div class="col-md-7">
+                <h6>Model Name: {{ singleInv.mname }}</h6>
+                <h6>Color: {{ singleInv.color }}</h6>
+                <h6>Manufacturing Year: {{ singleInv.year }}</h6>
+                <h6>Registration Number: {{ singleInv.registration_number }}</h6>
+                <h6>Count: {{ singleInv.count }}</h6>
+                <h6>Note: {{ singleInv.note }}</h6>
+              </div>
+          </div>
         </div>
         
         <!-- Modal footer -->

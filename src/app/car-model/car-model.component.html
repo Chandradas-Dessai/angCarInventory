@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
+        <div class="card" *ngIf="allManufacturers">
           <div class="card-body">
-            <h5 class="card-title">Add Model</h5>
+            <h3 class="card-title">Add Car Model</h3>
             <form [formGroup]="carModelForm" enctype="multipart/form-data" (ngSubmit)="formSubmit(carModelForm.value)">
               <div class="form-row">
                 <div class="col">
@@ -21,7 +21,7 @@
                     <div class="form-group row">
                         <label class="col-form-label col-md-4" for="manufacturer_id">Select Manufacturer</label>
                         <div class="col-md-8">
-                            <select class="form-control" id="manufacturer_id" formControlName="manufacturer_id" *ngIf="allManufacturers">
+                            <select class="form-control" id="manufacturer_id" formControlName="manufacturer_id">
                               <option *ngFor="let m of allManufacturers.data" [value]="m.id">{{m.name}}</option>
                             </select>
                             <div class="error" *ngIf="carModelForm.get('manufacturer_id').touched && !carModelForm.get('manufacturer_id').value">
