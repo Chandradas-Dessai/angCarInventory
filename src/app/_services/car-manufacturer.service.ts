@@ -11,8 +11,8 @@ export class CarManufacturerService {
 
   //url: string = 'http://127.0.0.1:8000/api/v1/manufacturer';
   //url: string = 'http://cinventory.000webhostapp.com/api/v1/manufacturer';
-  url: string = 'https://cinventory.000webhostapp.com/v1/manufacturer';
- //url: string = 'http://minicarinventory.epizy.com/public/api/v1/manufacturer';
+ // url: string = 'https://cinventory.000webhostapp.com/v1/manufacturer';
+ url: string = 'https://laravelbackend.herokuapp.com/api/v1/manufacturer';
 
   constructor(private http: HttpClient) { }
 
