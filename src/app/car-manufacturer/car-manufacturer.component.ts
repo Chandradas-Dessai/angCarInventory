@@ -93,16 +93,12 @@ export class CarManufacturerComponent implements OnInit {
   }
 
   updateManufacturer(id: any, singleManufacturer: any){
-     this.carManufacturerService.updateManufacturer(id,singleManufacturer).subscribe(response => {
-      if(response.status=="success"){
-        this.toastr.success(response.message, 'Success', {timeOut: 5000});
+     this.carManufacturerService.updateManufacturer(id,singleManufacturer).subscribe(
+       () => {
+        this.toastr.success('Manufacturer Updated Successfully', 'Success', {timeOut: 5000});
         this.listAllManufacturers();
-        this.manufacturerForm.reset();
+        this.updateManufacturerForm.reset();
         this.spinnerService.hide();
-      }else{
-        this.toastr.error(response.message, 'Error', {timeOut: 5000})
-        this.spinnerService.hide();
-      }
     });
   }
 
