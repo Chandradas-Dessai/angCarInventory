@@ -32,6 +32,13 @@ export class CarManufacturerService {
     );
   }
 
+ updateManufacturer(id: any, singleManufacturer: any): Observable<any>{
+    return this.http.put<any>(this.url + '/' + id, singleManufacturer).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
   deleteManufacturerById(id: any): Observable<any>{
     return this.http.delete<any>(this.url + '/' + id).pipe(
       retry(1),

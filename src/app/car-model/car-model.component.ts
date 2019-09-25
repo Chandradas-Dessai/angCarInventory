@@ -43,15 +43,15 @@ export class CarModelComponent implements OnInit {
 
   ngOnInit() {
     this.carModelForm = this.formBuilder.group({
-      'mname' : ['', Validators.required],
-      'manufacturer_id': ['', Validators.required],
-      'color': ['', Validators.required],
-      'year': ['', Validators.required],
-      'registration_number': ['', Validators.required],
-      'note': ['', Validators.required],
-      'count': [0, Validators.required],
-      'image_url_1': [null, Validators.required],
-      'image_url_2': [null,Validators.required]
+      mname : ['', Validators.required],
+      manufacturer_id: ['', Validators.required],
+      color: ['', Validators.required],
+      year: ['', Validators.required],
+      registration_number: ['', Validators.required],
+      note: ['', Validators.required],
+      count: [0, Validators.required],
+      image_url_1: [null, Validators.required],
+      image_url_2: [null,Validators.required]
     });
 
     this.spinnerService.show();

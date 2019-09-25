@@ -18,9 +18,10 @@ import { CarManufacturerService } from '../_services/car-manufacturer.service';
 })
 export class CarManufacturerComponent implements OnInit {
   manufacturerForm: any;
+  updateManufacturerForm: any;
   allManufacturers: any;
   manufacturerToUpdate = null;
-
+  singleManufacturer: any;
 
   constructor(
     private toastr: ToastrService,
@@ -32,7 +33,11 @@ export class CarManufacturerComponent implements OnInit {
   ngOnInit() {
     this.manufacturerForm = this.formBuilder.group({
       name:['', Validators.required]
-    })
+    });
+
+    this.updateManufacturerForm = this.formBuilder.group({
+      name:['', Validators.required]
+    });
     this.listAllManufacturers();
   }
 
@@ -60,7 +65,21 @@ export class CarManufacturerComponent implements OnInit {
 
      input.append('name', manufacturer.name);
 
-     this.carManufacturerService.createManufacturer(input).subscribe(response => {
+      this.createManufacturer(input);
+  
+  }
+
+  loadManufacturerToEdit(mId: string, manufacturer:any){
+    this.spinnerService.show();
+    this.singleManufacturer = manufacturer;
+    this.manufacturerToUpdate = this.singleManufacturer.id;
+    this.updateManufacturerForm.controls['name'].setValue(this.singleManufacturer.name);
+    this.spinnerService.hide();
+  }
+
+
+  createManufacturer(input: any){
+    this.carManufacturerService.createManufacturer(input).subscribe(response => {
       if(response.status=="success"){
         this.toastr.success(response.message, 'Success', {timeOut: 5000});
         this.listAllManufacturers();
@@ -71,8 +90,22 @@ export class CarManufacturerComponent implements OnInit {
         this.spinnerService.hide();
       }
     });
-
   }
+
+  updateManufacturer(id: any, singleManufacturer: any){
+     this.carManufacturerService.updateManufacturer(id,singleManufacturer).subscribe(response => {
+      if(response.status=="success"){
+        this.toastr.success(response.message, 'Success', {timeOut: 5000});
+        this.listAllManufacturers();
+        this.manufacturerForm.reset();
+        this.spinnerService.hide();
+      }else{
+        this.toastr.error(response.message, 'Error', {timeOut: 5000})
+        this.spinnerService.hide();
+      }
+    });
+  }
+
 
  
   public deleteManufacturer(mId: any){
