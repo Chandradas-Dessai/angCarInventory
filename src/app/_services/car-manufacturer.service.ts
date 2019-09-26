@@ -33,7 +33,7 @@ export class CarManufacturerService {
   }
 
  updateManufacturer(id: any, singleManufacturer: any): Observable<any>{
-    return this.http.put<any>(this.url + '/' + id, singleManufacturer).pipe(
+    return this.http.patch<any>(this.url + '/' + id, singleManufacturer).pipe(
       retry(1),
       catchError(this.handleError)
     );
